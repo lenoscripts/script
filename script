@@ -1,7 +1,4 @@
--- [[ UI Library Setup ]]
-Library = loadstring(game:HttpGet('https://raw.githubusercontent.com/VoixGIT/ONIHUB/main/VisualUI3.0'))()
-Window = Library:CreateWindow('O N I  H U B', 'V 4 . 0 [Open Source]', 'O N I  H U B', ' ', 'VisualUIConfigs', 'Kiriot')
-Window.Position = UDim2.new(0.5, -Window.Size.X.Offset / 2, 0.5, -Window.Size.Y.Offset / 2)
+
 
 
 -- Wait until the game is fully loaded
@@ -26,6 +23,11 @@ if not success then
     warn("Error waiting for leaderstats:", error)
     return
 end
+
+-- [[ UI Library Setup ]]
+Library = loadstring(game:HttpGet('https://raw.githubusercontent.com/VoixGIT/ONIHUB/main/VisualUI3.0'))()
+Window = Library:CreateWindow('O N I  H U B', 'V 4 . 0 [Open Source]', 'O N I  H U B', ' ', 'VisualUIConfigs', 'Kiriot')
+Window.Position = UDim2.new(0.5, -Window.Size.X.Offset / 2, 0.5, -Window.Size.Y.Offset / 2)
 
 
 
