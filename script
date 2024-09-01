@@ -4,39 +4,29 @@ Window = Library:CreateWindow('O N I  H U B', 'V 4 . 0 [Open Source]', 'O N I  H
 Window.Position = UDim2.new(0.5, -Window.Size.X.Offset / 2, 0.5, -Window.Size.Y.Offset / 2)
 
 
----WAITS UNTIL CHARACTER AND GAME IS FULLY LOADED
-
+-- Wait until the game is fully loaded
 repeat wait() until game:IsLoaded()
 
-
-local time = os.clock()
-COREGUI = game:GetService("CoreGui")
-if not game:IsLoaded() then
-	game.Loaded:Wait()
+-- Only proceed if in the correct place
+if game.PlaceId ~= 5712833750 then
+    return
 end
 
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
 
-local breakit = false
-while true do
-    local success, error = pcall(function()
-        print(game.Players.LocalPlayer:FindFirstChild("leaderstats"))
-        task.wait()
-        if game.Players.LocalPlayer:FindFirstChild("leaderstats") then
-            breakit = true
-        end
-    end)
-
-    if error then
-        print(success, error)
+-- Optional: Wait for 'leaderstats' if it's crucial to your script
+local success, error = pcall(function()
+    if not player:FindFirstChild("leaderstats") then
+        player:WaitForChild("leaderstats", 10) -- Waits for up to 10 seconds
     end
+end)
 
-    if breakit then
-        break
-    end
+if not success then
+    warn("Error waiting for leaderstats:", error)
+    return
 end
 
-Player = game.Players.LocalPlayer
-Character = Player.Character or Player.CharacterAdded:Wait()
 
 
 --[username] = 'webhook'
@@ -555,7 +545,7 @@ Toggle = Section:CreateToggle('[Dummy] (Hit)', false, Color3.fromRGB(0, 125, 255
             local dummyLevel
             if game.Players.LocalPlayer.leaderstats.Level.Value > 5000 then
                 dummyLevel = "Dummy2"
-                search = game:GetService("Workspace").MAP.5k_dummies
+                search = game:GetService("Workspace").MAP.waterfall1
             else
                 dummyLevel = "Training Dummy"
                 search = game:GetService("Workspace").MAP.dummies
@@ -619,7 +609,7 @@ Toggle = Section:CreateToggle('[Dummy] (Single Fireball + Hit)', false, Color3.f
             local dummyLevel
             if game.Players.LocalPlayer.leaderstats.Level.Value > 5000 then
                 dummyLevel = "Dummy2"
-                search = game:GetService("Workspace").MAP.5k_dummies
+                search = game:GetService("Workspace").MAP.waterfall1
             else
                 dummyLevel = "Training Dummy"
                 search = game:GetService("Workspace").MAP.dummies
@@ -699,7 +689,7 @@ Toggle = Section:CreateToggle('[Dummy] (All Fireballs + Hit - [MultiToggle])', f
             local dummyLevel
             if game.Players.LocalPlayer.leaderstats.Level.Value > 5000 then
                 dummyLevel = "Dummy2"
-                search = game:GetService("Workspace").MAP.5k_dummies
+                search = game:GetService("Workspace").MAP.waterfall1
             else
                 dummyLevel = "Training Dummy"
                 search = game:GetService("Workspace").MAP.dummies
